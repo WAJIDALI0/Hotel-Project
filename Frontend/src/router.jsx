@@ -19,6 +19,9 @@ import NewBrandsScreen from "./screens/brands/NewBrandsScreen";
 import EditBrandsScreen from "./screens/brands/EditBrandsScreen";
 import UserManagementScreen from "./screens/users/UserManagementScreen";
 import ProductHistoryScreen from "./screens/product/ProductHistoryScreen";
+import AddNewCookScreen from "./screens/product/AddNewCoojScreen";
+import AssignCookProduct from "./screens/product/AssignCookProduct";
+import GetCookProducts from "./screens/product/GetCookProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +55,10 @@ const router = createBrowserRouter([
         element: <PrductsScreen />,
       },
       { path: "/products/new", element: <AddNewProductScreen /> },
+      { path: "/cook/new", element: <AddNewCookScreen/> },
+      { path: "/cook/assign/", element: <AssignCookProduct /> },
+      { path: "/cook/show/", element: <GetCookProducts /> },
+
       { path: "/products/edit/:id", element: <ProductEditScreen /> },
       { path: "/products/history/:id", element: <ProductHistoryScreen /> },
 

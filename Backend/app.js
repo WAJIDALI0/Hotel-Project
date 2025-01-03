@@ -8,8 +8,10 @@ import productRouter from "./routes/productRoutes.js";
 import companyRouter from "./routes/companyRoutes.js";
 import locationRouter from "./routes/locationRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
+import cookRouter from "./routes/cookRoutes.js"
 
 dotenv.config();
+
 
 const app = express();
 app.use(
@@ -17,23 +19,24 @@ app.use(
       // methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     // credentials: true,
     // preflightContinue: false,
-    origin: true,
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
 );
 
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded());
 connectdb();
-
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1",cookRouter );
 app.use("/api/v1/brands", companyRouter);
 app.use("/api/v1/location", locationRouter);
 app.use("/api/v1/analytics", analyticsRoutes);
-
+app.use("/api/v1/cooks", cookRouter);
 app.use(express.urlencoded({ extended: true }));
 
 // console.log(process.env.FRONTEND_URL);

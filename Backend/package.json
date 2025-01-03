@@ -9,12 +9,15 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "Backend": "nodemon app.js",
+    "Frontend": "  npm start --prefixcd ../Frontend  ./",
+    "dev": "concurrently \"npm run Backend\" \"npm run Frontend\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "concurrently": "^9.1.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

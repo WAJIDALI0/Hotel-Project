@@ -26,7 +26,19 @@ function SideNavbar() {
       { link: "", name: "Dashboard", icon: <IoMdHome />, end: true },
       {
         link: "/products/new",
-        name: "New Product",
+        name: "Add Product",
+        icon: <AiFillProduct />,
+        end: true,
+      },
+      {
+        link: "/cook/new",
+        name: "Add Cook",
+        icon: <AiFillProduct />,
+        end: true,
+      },
+      {
+        link: "/cook/assign",
+        name: "AssignCookProduct",
         icon: <AiFillProduct />,
         end: true,
       },
@@ -50,6 +62,12 @@ function SideNavbar() {
       {
         link: "/products",
         name: "Products",
+        icon: <LuShoppingBag />,
+        end: false,
+      },
+      {
+        link: "/cook/show",
+        name: "ShowCookProduct",
         icon: <LuShoppingBag />,
         end: false,
       },

@@ -1,5 +1,3 @@
-// routes/productRoutes.js
-
 import express from "express";
 import {
   createProduct,
@@ -7,21 +5,25 @@ import {
   getProductById,
   updateProductById,
   deleteProductById,
-  getProductHistroy,
-} from "../controllers/product_controller.js";
+  getProductHistory,  // Corrected to 'getProductHistory'
+} from "../controllers/product_controller.js";  // Ensure the correct function is imported
 import { isAuthenticated } from "../middlewares/user_auth.js";
 
 const productRouter = express.Router();
 
 // Create a new product
 productRouter.post("/", isAuthenticated, createProduct);
+// cook
+
 
 // Get all products
 productRouter.get("/", getAllProducts);
 
+// Define route to get product history (corrected import)
+productRouter.get("/:id/history", getProductHistory);  // Use the correct handler
+
 // Get a single product by ID
 productRouter.get("/:id", getProductById);
-productRouter.get("/:id/history", getProductHistroy);
 
 // Update a product by ID
 productRouter.put("/:id", isAuthenticated, updateProductById);
@@ -29,6 +31,5 @@ productRouter.put("/:id", isAuthenticated, updateProductById);
 // Delete a product by ID
 productRouter.delete("/:id", isAuthenticated, deleteProductById);
 
-//search bar feature
-//expired products
+// Export the product routes
 export default productRouter;

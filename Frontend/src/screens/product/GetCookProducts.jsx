@@ -5,7 +5,7 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import { Link, NavLink, useOutletContext } from "react-router-dom";
 import { SERVER_URL } from "../../router";
 
-function ProductsScreen() {
+function GetCookProducts() {
   const [isLoading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -14,7 +14,6 @@ function ProductsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState(null);
 
- 
   // Fetch products data
   const fetchData = async () => {
     setLoading(true);
@@ -45,11 +44,10 @@ function ProductsScreen() {
     }
   };
 
-   // Fetch data when dependencies change
-   useEffect(() => {
+  // Fetch data when dependencies change
+  useEffect(() => {
     fetchData();
   }, [currentPage, itemsPerPage, searchTerm]);
-
 
   // Handle page changes
   const handlePrevPage = () => {
@@ -72,7 +70,7 @@ function ProductsScreen() {
   return (
     <div className="m-5">
       <header>
-        <h1 className="text-3xl font-semibold text-neutral-900">Products</h1>
+        <h1 className="text-3xl font-semibold text-neutral-900">Cook Products</h1>
         <p className="text-lg text-neutral-600">Here are your products!</p>
       </header>
 
@@ -80,15 +78,15 @@ function ProductsScreen() {
         <input
           type="text"
           className="outline-none px-3 py-1 border-neutral-500 border-2 rounded-md text-lg"
-          placeholder="Search products"
+          placeholder="Search cook products"
           value={searchTerm}
           onChange={handleSearchChange}
         />
         <NavLink
           className="text-lg font-semibold text-neutral-800 hover:bg-teal-50 hover:text-teal-800 px-4 py-1 border rounded-md"
-          to="new"
+          to="cook"
         >
-          Create Product
+          Assign Product to Cook
         </NavLink>
       </div>
 
@@ -106,14 +104,13 @@ function ProductsScreen() {
           <table className="table-auto w-full border-collapse">
             <thead className="border-b text-left">
               <tr>
-                <th className="px-4 py-2">NAME</th>
-                <th className="px-4 py-2">WEIGHT</th>
+                <th className="px-4 py-2">Cook Name</th>
+                <th className="px-4 py-2">Product Name</th>
                 <th className="px-4 py-2">QUANTITY</th>
-                <th className="px-4 py-2">PRICE</th>
-                <th className="px-4 py-2">PER UNIT PRICE</th>
                 <th className="px-4 py-2">DATE OF PURCHASE</th>
                 <th className="px-4 py-2">HISTORY</th>
-                <th className="px-4 py-2">ACTION</th>
+                <th className="px-4 py-2">Action</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -172,11 +169,9 @@ function ProductRow({ product }) {
   const [_, user] = useOutletContext();
   return (
     <tr className="border-b hover:bg-teal-50 hover:text-teal-700">
-      <td className="px-4 py-2">{product.name}</td>
-      <td className="px-4 py-2">{product.weight}</td>
+      <td className="px-4 py-2">{product.cook}</td>
+      <td className="px-4 py-2">{product.product}</td> {/* Fixed typo here */}
       <td className="px-4 py-2">{product.quantity}</td>
-      <td className="px-4 py-2">{product.price}</td>
-      <td className="px-4 py-2">{product.perUnitPrice}</td>
       <td className="px-4 py-2">{product.dateOfPurchase.split("T")[0]}</td>
       <td className="px-4 py-2">
         <Link
@@ -198,4 +193,4 @@ function ProductRow({ product }) {
   );
 }
 
-export default ProductsScreen;
+export default GetCookProducts;  // Fixed export name
