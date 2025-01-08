@@ -116,8 +116,8 @@ function ProductsScreen() {
                 <th className="px-4 py-2">PRICE</th>
                 <th className="px-4 py-2">PER UNIT PRICE</th>
                 <th className="px-4 py-2">DATE OF PURCHASE</th>
-                <th className="px-4 py-2">HISTORY</th>
-                <th className="px-4 py-2">ACTION</th>
+                {/* <th className="px-4 py-2">HISTORY</th>
+                <th className="px-4 py-2">ACTION</th> */}
               </tr>
             </thead>
             <tbody>
@@ -182,22 +182,22 @@ function ProductRow({ product }) {
       <td className="px-4 py-2">{product.price}</td>
       <td className="px-4 py-2">{product.perUnitPrice}</td>
       <td className="px-4 py-2">{product.dateOfPurchase.split("T")[0]}</td>
-      <td className="px-4 py-2">
-        <Link
+      {/* <td className="px-4 py-2"> */}
+        {/* <Link
           to={`history/${product._id}`}
           className="px-4 py-1 bg-neutral-800 text-slate-100 text-sm rounded-md hover:bg-neutral-600"
         >
           View
-        </Link>
-      </td>
-      <td className="px-4 py-2">
+        </Link> */}
+      {/* </td> */}
+      {/* <td className="px-4 py-2">
         <NavLink
           to={user._id !== product.createdBy ? "" : `edit/${product._id}`}
           className="px-4 py-1 bg-neutral-800 text-slate-100 text-sm rounded-md hover:bg-neutral-600"
         >
           {user._id === product.createdBy ? "Edit" : "Not Allowed"}
         </NavLink>
-      </td>
+      </td> */}
     </tr>
   );
 }
