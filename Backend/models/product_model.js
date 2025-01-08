@@ -1,6 +1,50 @@
+// import mongoose from "mongoose";
+
+// const Productschema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   weight: {
+//     type: String,
+//     required: true,
+//   },
+//   quantity: {
+//     type: Number,
+//     required: true,
+//   },
+//   price: {
+//     type: Number,
+//     required: true,
+//   },
+//   perUnitPrice: {
+//     type: Number,
+//     required: true,
+//   },
+//   dateOfPurchase: {
+//     type: Date,
+//     required: true,
+//   },
+//   createdBy: {
+//     type: mongoose.Schema.ObjectId,
+//     ref: "User",
+//     required: true,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+// });
+
+// const Product = mongoose.model("Product", Productschema);
+
+// export default Product;
+  
+
+
 import mongoose from "mongoose";
 
-const Productschema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -12,6 +56,7 @@ const Productschema = new mongoose.Schema({
   quantity: {
     type: Number,
     required: true,
+    min: 0,
   },
   price: {
     type: Number,
@@ -26,7 +71,7 @@ const Productschema = new mongoose.Schema({
     required: true,
   },
   createdBy: {
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
@@ -36,6 +81,6 @@ const Productschema = new mongoose.Schema({
   },
 });
 
-const Product = mongoose.model("Product", Productschema);
+const Product = mongoose.model("Product", productSchema);
 
 export default Product;

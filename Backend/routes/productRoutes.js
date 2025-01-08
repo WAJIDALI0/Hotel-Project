@@ -19,6 +19,28 @@ productRouter.post("/", isAuthenticated, createProduct);
 // Get all products
 productRouter.get("/", getAllProducts);
 
+
+// import {
+//   addProduct,
+//   getProducts,
+// } from "../controllers/product_controller.js";
+
+
+// Product routes
+// productRouter.post("/products",isAuthenticated, addProduct);
+// productRouter.get("/products", getProducts);
+import { getReturnedProducts } from "../controllers/product_controller.js";
+// Assign product routes
+productRouter.get("/returned-products", getReturnedProducts);
+// Return product routes
+
+
+
+
+
+
+
+    
 // Define route to get product history (corrected import)
 productRouter.get("/:id/history", getProductHistory);  // Use the correct handler
 

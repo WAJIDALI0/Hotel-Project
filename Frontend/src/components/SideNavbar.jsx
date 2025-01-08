@@ -43,15 +43,9 @@ function SideNavbar() {
         end: true,
       },
       {
-        link: "/brands/new",
-        name: "New Brand",
+        link: "/return/product",
+        name: "ReturnProduct",
         icon: <FaBlog />,
-        end: true,
-      },
-      {
-        link: "/locations/new",
-        name: "New Location",
-        icon: <BiLocationPlus />,
         end: true,
       },
     ],
@@ -71,13 +65,20 @@ function SideNavbar() {
         icon: <LuShoppingBag />,
         end: false,
       },
-      { link: "/brands", name: "Brands", icon: <SiBrandfolder />, end: false },
+      // {
+      //   link: "/List/product",
+      //   name: "ListCookProducts",
+      //   icon: <LuShoppingBag />,
+      //   end: false,
+      // },
       {
-        link: "/locations",
-        name: "Locations",
-        icon: <BiLocationPlus />,
+        link: "/return/show/product",
+        name: "ListReturnProduct",
+        icon: <LuShoppingBag />,
         end: false,
       },
+      
+      
       { link: "/users", name: "User Management", icon: <BiUser />, end: false },
     ],
   };

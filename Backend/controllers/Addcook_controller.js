@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import CookModel from "../models/cook_models.js";
-import AssignCookProduct from "../models/assignproductcook.js";
+import AssignProductCookModel from "../models/assignproductcook_model.js";
 
 export const addCook = async (req, res) => {
   try {
@@ -31,6 +31,19 @@ export const addCook = async (req, res) => {
   }
 };
 
+// import AssignProductCookModel from "../models/assignProductCook.js";
+
+export const getAllCooks = async (req, res) => {
+  try {
+    const cooks = await CookModel.find().select("name createdAt updatedAt"); // Customize fields as needed
+    res.status(200).json(cooks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 // app.post('/api/v1/cooks/assign', async (req, res) => {
 //   try {
 //       const { cookname, productname, quantity, dateOfPurchase } = req.body;
@@ -55,34 +68,34 @@ export const addCook = async (req, res) => {
 //   }
 // });
 
-export const assignProduct= async (req, res) => {
-  try {
-    //  we check if product, quantity, cook, assignedDate are provided or not
-const { cook,product,quantity , assignedDate,} = req.body;
-const existingCookproduct = await AssignCookProduct.findOne({cook, product, quantity , assignedDate });
-    if (existingCookproduct) {
-      return res.status(400).json({ message: "This product already assign" });
-    }
-    const assignProduct = new AssignCookProduct({
-      cook,
-      product,
-      quantity,
-      assignedDate,
+// export const assignProduct= async (req, res) => {
+//   try {
+//     //  we check if product, quantity, cook, assignedDate are provided or not
+// const { cook,product,quantity , assignedDate,} = req.body;
+// const existingCookproduct = await AssignCookProduct.findOne({cook, product, quantity , assignedDate });
+//     if (existingCookproduct) {
+//       return res.status(400).json({ message: "This product already assign" });
+//     }
+//     const assignProduct = new AssignCookProduct({
+//       cook,
+//       product,
+//       quantity,
+//       assignedDate,
   
-    });
-    await assignProduct.save();
-    res.status(201).json({ message: "Product assigned successfully", data: assignProduct });
-  }
-  catch (error) {
-    // Handle duplicate key error
-    // if (error.code === 11000) {
-      // return res.status(400).json({ message: "This product already assign" });
-    // }
+//     });
+//     await assignProduct.save();
+//     res.status(201).json({ message: "Product assigned successfully", data: assignProduct });
+//   }
+//   catch (error) {
+//     // Handle duplicate key error
+//     // if (error.code === 11000) {
+//       // return res.status(400).json({ message: "This product already assign" });
+//     // }
   
-    res.status(500).json({ error: error.message });
-  }
+//     res.status(500).json({ error: error.message });
+//   }
   
-  };
+//   };
 //  if these products assign then we show the message that 
 // 
 //  if (product) {

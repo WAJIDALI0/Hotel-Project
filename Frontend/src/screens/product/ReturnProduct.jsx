@@ -3,7 +3,7 @@ import axios from "axios";
 import ShowSuccessMesasge from "../../components/ShowSuccessMesasge";
 import { SERVER_URL } from "../../router";
 
-function AssignCookProduct() {
+function ReturnProduct() {
   const [formData, setFormData] = useState({
     cook: "",
     product: "",
@@ -27,37 +27,22 @@ function AssignCookProduct() {
         const productsResponse = await axios.get(`${SERVER_URL}/api/v1/products`, {
           withCredentials: true,
         });
-  
+
         console.log("Cooks API Response:", cooksResponse.data);
         console.log("Products API Response:", productsResponse.data);
-  
-        // Map the cooks directly as the response is an array
-        const filteredCooks = (cooksResponse.data || []).map((cook) => ({
-          _id: cook._id,
-          name: cook.name,
-        }));
-  
-        // Map the products using the `data` property
-        const filteredProducts = (productsResponse.data.data || []).map((product) => ({
-          _id: product._id,
-          name: product.name,
-        }));
-  
-        console.log("Filtered Cooks:", filteredCooks);
-        console.log("Filtered Products:", filteredProducts);
-  
-        setCooks(filteredCooks);
-        setProducts(filteredProducts);
+
+        // Map the cooks and products
+        setCooks(cooksResponse.data);
+        setProducts(productsResponse.data.data);
       } catch (error) {
         console.error("Error fetching cooks/products:", error.message);
         setError("Failed to fetch cooks or products.");
       }
     };
-  
+
     fetchCooksAndProducts();
   }, []);
-  
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -71,20 +56,20 @@ function AssignCookProduct() {
 
     try {
       const transformedData = {
-        cook: formData.cook,
-        product: formData.product,
+        cook: formData.cook, // Pass ObjectId of the cook
+        product: formData.product, // Pass ObjectId of the product
         quantity: Number(formData.quantity),
         assignedDate: formData.assignedDate,
       };
 
-      await axios.post(`${SERVER_URL}/api/v1/assign/product`, transformedData, {
+      await axios.post(`${SERVER_URL}/api/v1/return/product`, transformedData, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      setSuccessMessage("Product Assigned to Cook Successfully");
+      setSuccessMessage("Product Returned Successfully");
       setFormData({
         cook: "",
         product: "",
@@ -92,8 +77,8 @@ function AssignCookProduct() {
         assignedDate: "",
       });
     } catch (error) {
-      console.error("Error assigning product:", error.response?.data || error.message);
-      setError(error.response?.data?.error || "Failed to assign product to cook.");
+      console.error("Error returning product:", error.response?.data || error.message);
+      setError(error.response?.data?.error || "Failed to return product.");
     } finally {
       setIsLoading(false);
     }
@@ -101,7 +86,7 @@ function AssignCookProduct() {
 
   return (
     <div className="m-5">
-      <h1 className="text-3xl font-semibold text-neutral-900">Assign Product to Cook</h1>
+      <h1 className="text-3xl font-semibold text-neutral-900">Return Product</h1>
       {error && <div className="text-red-500">{error}</div>}
       {successMessage && <div className="text-green-500">{successMessage}</div>}
       <form onSubmit={handleSubmit}>
@@ -196,7 +181,7 @@ function AssignCookProduct() {
           className="mt-4 px-4 py-2 bg-teal-500 text-white font-semibold rounded-md hover:bg-teal-600 transition duration-300"
           disabled={isLoading}
         >
-          {isLoading ? "Assigning..." : "Assign Product"}
+          {isLoading ? "Returning..." : "Return Product"}
         </button>
       </form>
       <br />
@@ -209,4 +194,4 @@ function AssignCookProduct() {
   );
 }
 
-export default AssignCookProduct;
+export default ReturnProduct;

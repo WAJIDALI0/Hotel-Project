@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const GetCookProducts = () => {
+const ListCookProducts = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
   const [search, setSearch] = useState(""); // To store the search input
@@ -12,7 +12,28 @@ const GetCookProducts = () => {
         withCredentials: true, // Ensure cookies are sent (for authentication)
       });
       console.log("API Response:", response.data);
-      setProducts(response.data.data); // Update state with API data
+
+      // Grouping products by cook and product, and summing the quantities
+      const groupedProducts = response.data.data.reduce((acc, product) => {
+        const key = `${product.cook.name}-${product.product.name}`; // Combine cook and product names as the key
+        if (acc[key]) {
+          // If the key already exists, add the quantity
+          acc[key].quantity += product.quantity;
+        } else {
+          // Otherwise, initialize with the product data
+          acc[key] = {
+            cookName: product.cook.name,
+            productName: product.product.name,
+            quantity: product.quantity,
+            assignedDate: product.assignedDate,
+          };
+        }
+        return acc;
+      }, {});
+
+      // Convert grouped products back to an array
+      const groupedProductsArray = Object.values(groupedProducts);
+      setProducts(groupedProductsArray); // Update state with grouped products
     } catch (err) {
       console.error("Error fetching products:", err.message);
       setError("Failed to fetch products. Please try again.");
@@ -55,11 +76,12 @@ const GetCookProducts = () => {
           <tbody>
             {products
               .filter((product) =>
+                // Check if product.cookName exists and then perform toLowerCase
                 product.cookName?.toLowerCase().includes(search.toLowerCase()) // Filter products based on search input
               )
               .map((product) => (
                 <tr
-                  key={product._id}
+                  key={`${product.cookName}-${product.productName}`} // Unique key based on both cook and product
                   className={`${
                     product.cookName?.toLowerCase().includes(search.toLowerCase())
                       ? "bg-yellow-100" // Highlight row if cook name matches search input
@@ -68,10 +90,10 @@ const GetCookProducts = () => {
                 >
                   <td className="px-4 py-2">{product.cookName || "Not Assigned"}</td>
                   <td className="px-4 py-2">{product.productName || "Unknown Product"}</td>
-                  <td className="px-4 py-2">{product.totalQuantity || 0}</td>
+                  <td className="px-4 py-2">{product.quantity || 0}</td>
                   <td className="px-4 py-2">
-                    {product.latestAssignedDate
-                      ? new Date(product.latestAssignedDate).toLocaleString()
+                    {product.assignedDate
+                      ? new Date(product.assignedDate).toLocaleString()
                       : "Unknown Date"}
                   </td>
                 </tr>
@@ -85,4 +107,5 @@ const GetCookProducts = () => {
   );
 };
 
-export default GetCookProducts;
+export default ListCookProducts;
+// .......

@@ -26,7 +26,7 @@ function AddNewCookScreen() {
       console.log("formData", formData);
       
       const response = await axios.post(
-        `${SERVER_URL}/api/v1/cook`,
+        `${SERVER_URL}/api/v1/cooks/cook`,
         formData,
         {
           withCredentials: true,

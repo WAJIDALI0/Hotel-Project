@@ -19,7 +19,7 @@ function ProductsScreen() {
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await axios.get(`${SERVER_URL}/api/v1/products`, {
         params: {
@@ -28,22 +28,26 @@ function ProductsScreen() {
           search: searchTerm,
         },
       });
-
+  
       // Ensure that 'price' and 'perUnitPrice' are valid numbers
       const sanitizedData = response.data.data.map((product) => ({
         ...product,
         price: isNaN(Number(product.price)) ? 0 : Number(product.price),  // Defaults to 0 if invalid
         perUnitPrice: isNaN(Number(product.perUnitPrice)) ? 0 : Number(product.perUnitPrice),
       }));
-
+  
       setProducts(sanitizedData);
-      setTotalPages(response.data.pages_count);
+      
+      // Ensure totalPages defaults to 0 if undefined
+      const pagesCount = response.data.pages_count || 0;
+      setTotalPages(pagesCount);
     } catch (err) {
       setError(err.response?.data?.error || "An error occurred");
     } finally {
       setLoading(false);
     }
   };
+  
 
    // Fetch data when dependencies change
    useEffect(() => {

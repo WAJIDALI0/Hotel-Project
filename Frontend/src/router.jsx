@@ -18,10 +18,13 @@ import BrandsScreen from "./screens/brands/BrandsScreen";
 import NewBrandsScreen from "./screens/brands/NewBrandsScreen";
 import EditBrandsScreen from "./screens/brands/EditBrandsScreen";
 import UserManagementScreen from "./screens/users/UserManagementScreen";
-import ProductHistoryScreen from "./screens/product/ProductHistoryScreen";
 import AddNewCookScreen from "./screens/product/AddNewCoojScreen";
 import AssignCookProduct from "./screens/product/AssignCookProduct";
 import GetCookProducts from "./screens/product/GetCookProducts";
+import ReturnProduct from './screens/product/ReturnProduct'
+import ShowReturnProducts from "./screens/product/ShowReturnProducts"
+import ListCookProducts from "./screens/product/ListCookProduct";
+// import ReturnedProducts from "./screens/product/ReturnProduct";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,39 +60,19 @@ const router = createBrowserRouter([
       { path: "/products/new", element: <AddNewProductScreen /> },
       { path: "/cook/new", element: <AddNewCookScreen/> },
       { path: "/cook/assign/", element: <AssignCookProduct /> },
+      { path: "return/product/", element: <ReturnProduct/> },
       { path: "/cook/show/", element: <GetCookProducts /> },
+      {
+        path: "/List/product",
+        element: <ListCookProducts />,
+      },
+      {
+        path: "/return/show/product",
+        element: <ShowReturnProducts />,
+      },
 
       { path: "/products/edit/:id", element: <ProductEditScreen /> },
-      { path: "/products/history/:id", element: <ProductHistoryScreen /> },
 
-      //  brands
-
-      {
-        path: "/brands",
-        element: <BrandsScreen />,
-      },
-      {
-        path: "/brands/new",
-        element: <NewBrandsScreen />,
-      },
-      {
-        path: "/brands/edit/:id",
-        element: <EditBrandsScreen />,
-      },
-
-      // locations
-      {
-        path: "/locations",
-        element: <LocationsScreen />,
-      },
-      {
-        path: "/locations/new",
-        element: <NewLocationScreen />,
-      },
-      {
-        path: "/locations/edit/:id",
-        element: <EditLocationScreen />,
-      },
       // users
       {
         path: "/users",
