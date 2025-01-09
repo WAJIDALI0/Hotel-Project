@@ -1,7 +1,6 @@
-
 import mongoose from "mongoose";
 
-const assignProductCookSchema = new mongoose.Schema(
+const productAssignmentLogSchema = new mongoose.Schema(
   {
     cook: {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,9 +26,9 @@ const assignProductCookSchema = new mongoose.Schema(
   }
 );
 
-const AssignProductCookModel = mongoose.model(
-  "AssignProductCook",
-  assignProductCookSchema
+const ProductAssignmentLogModel = mongoose.model(
+  "ProductAssignmentLog",
+  productAssignmentLogSchema
 );
 
-export default AssignProductCookModel;
+export default ProductAssignmentLogModel;

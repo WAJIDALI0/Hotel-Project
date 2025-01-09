@@ -65,15 +65,21 @@ function SideNavbar() {
         icon: <LuShoppingBag />,
         end: false,
       },
-      // {
-      //   link: "/List/product",
-      //   name: "ListCookProducts",
-      //   icon: <LuShoppingBag />,
-      //   end: false,
-      // },
+      {
+        link: "/product/logs",
+        name: "Logs",
+        icon: <LuShoppingBag />,
+        end: false,
+      },
       {
         link: "/return/show/product",
         name: "ListReturnProduct",
+        icon: <LuShoppingBag />,
+        end: false,
+      },
+      {
+        link: "/cook/shows/",
+        name: "ListCooks",
         icon: <LuShoppingBag />,
         end: false,
       },

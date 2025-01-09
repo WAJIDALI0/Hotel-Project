@@ -39,7 +39,7 @@ app.use("/api/v1/assign",assignproductRoutes)
  app.use("/api/v1/return",returnproductRoutes)
 app.use("/api/v1/get",assignproductRoutes)
  app.use("/api/v1/get",returnproductRoutes );
- app.use("/api/v1/get",assignproductRoutes)
+//  app.use("/api/v1/get",assignproductRoutes)
 app.use("/api/v1/brands", companyRouter);
 app.use("/api/v1/location", locationRouter);
 app.use("/api/v1/analytics", analyticsRoutes);

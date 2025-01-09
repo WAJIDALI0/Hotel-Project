@@ -41,7 +41,7 @@ function AddNewCookScreen() {
         
       });
     } catch (error) {
-      setError("Failed to add cook");
+      setError("This Same Name Cook Already Exist");
     }
     setIsLoading(false);
   };
@@ -70,91 +70,6 @@ function AddNewCookScreen() {
               required
             />
           </div>
-          {/* <div>
-            <label
-              htmlFor="weight"
-              className="block text-lg font-semibold text-neutral-800 mb-1"
-            >
-              Weight
-            </label>
-            <input
-              type="text"
-              id="weight"
-              name="weight"
-              value={formData.weight}
-              onChange={handleChange}
-              className="border border-neutral-500 rounded-md px-3 py-2 w-full outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="quantity"
-              className="block text-lg font-semibold text-neutral-800 mb-1"
-            >
-              Quantity
-            </label>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              value={formData.quantity}
-              onChange={handleChange}
-              className="border border-neutral-500 rounded-md px-3 py-2 w-full outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="price"
-              className="block text-lg font-semibold text-neutral-800 mb-1"
-            >
-              Price
-            </label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              className="border border-neutral-500 rounded-md px-3 py-2 w-full outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="perUnitPrice"
-              className="block text-lg font-semibold text-neutral-800 mb-1"
-            >
-              Per Unit Price
-            </label>
-            <input
-              type="number"
-              id="perUnitPrice"
-              name="perUnitPrice"
-              value={formData.perUnitPrice}
-              onChange={handleChange}
-              className="border border-neutral-500 rounded-md px-3 py-2 w-full outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="dateOfPurchase"
-              className="block text-lg font-semibold text-neutral-800 mb-1"
-            >
-              Date of Purchase
-            </label>
-            <input
-              type="datetime-local"
-              id="dateOfPurchase"
-              name="dateOfPurchase"
-              value={formData.dateOfPurchase}
-              onChange={handleChange}
-              className="border border-neutral-500 rounded-md px-3 py-2 w-full outline-none"
-              required
-            />
-          </div> */}
         </div>
         <button
           type="submit"

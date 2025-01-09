@@ -24,6 +24,8 @@ import GetCookProducts from "./screens/product/GetCookProducts";
 import ReturnProduct from './screens/product/ReturnProduct'
 import ShowReturnProducts from "./screens/product/ShowReturnProducts"
 import ListCookProducts from "./screens/product/ListCookProduct";
+import Logs from "./screens/product/Logs";
+import ShowAllCooks from "./screens/product/ShowCooks";
 // import ReturnedProducts from "./screens/product/ReturnProduct";
 const router = createBrowserRouter([
   {
@@ -61,7 +63,9 @@ const router = createBrowserRouter([
       { path: "/cook/new", element: <AddNewCookScreen/> },
       { path: "/cook/assign/", element: <AssignCookProduct /> },
       { path: "return/product/", element: <ReturnProduct/> },
-      { path: "/cook/show/", element: <GetCookProducts /> },
+      { path: "/cook/shows/", element: <ShowAllCooks/> },
+      { path: "/cook/show/", element: <GetCookProducts/> },
+      { path: "/product/logs/", element: <Logs /> },
       {
         path: "/List/product",
         element: <ListCookProducts />,
