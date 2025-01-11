@@ -5,7 +5,7 @@ dotenv.config();
 export const connectdb = () => {
   mongoose
     .connect(process.env.MONGODB_URI, {
-      dbName: "ims",
+      dbName: "WAJID_SERVER",
     })
     .then((c) => {
       console.log(`database connected with ${c.connection.host}`);
