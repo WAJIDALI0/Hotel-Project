@@ -1,5 +1,5 @@
  
-# Inventory Management System (IMS)
+# Hotel Inventory Management System (HIMS) WAJID
 
 An Inventory Management System built with Vite, React.js for the frontend, and Node.js, Express, and MongoDB for the backend.
 
